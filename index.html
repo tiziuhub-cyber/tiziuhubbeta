@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TIZIU HUB — Seu hub de jogos para PC</title><link rel="icon" href="assets/favicon.png"><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<header>
+ <a class="brand" href="#inicio"><img src="assets/logo.png" alt="Logo TIZIU HUB"><b>TIZIU <span>HUB</span></b></a>
+ <nav><a href="#inicio">INÍCIO</a><a href="#categorias">CATEGORIAS</a><a href="#jogos">JOGOS</a><a href="#jogos-em-oferta">OFERTAS</a><a href="#mais-vendidos">MAIS VENDIDOS</a><a href="#contato">CONTATO</a></nav>
+ <div class="icons">
+  <button class="ibtn" id="searchBtn" aria-label="Pesquisar"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
+  <button class="ibtn" id="cartBtn" aria-label="Carrinho"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l3 12h11l2-8H6"/></svg><span id="count">0</span></button>
+  <div class="userwrap"><button class="ubtn" id="userBtn" aria-haspopup="true" aria-expanded="false"><span class="uico">👤</span><span class="ulabel">ENTRAR</span></button>
+   <div class="umenu" id="userMenu" hidden><button data-tab="conta">Minha conta</button><button data-tab="pedidos">Meus pedidos</button><button data-tab="favoritos">Favoritos</button><button data-act="sair">Sair</button></div></div>
+  <button class="ibtn" id="menuBtn" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+ </div>
+</header>
+<div id="searchBar"><input id="searchInput" type="search" placeholder="Pesquisar jogos pelo nome (ex: FC)..."><button class="btn btn-line" id="closeSearch">FECHAR</button></div>
+<main>
+<div class="hero" id="inicio">
+ <img src="assets/logo.png" alt="">
+ <h1>OS MELHORES JOGOS<br><em>ESTÃO AQUI</em></h1>
+ <p>Jogue. Explore. Evolua.</p>
+ <a class="btn btn-gold" href="#jogos">VER JOGOS</a>
+</div>
+<section class="sec" id="categorias"><h2>EXPLORAR CATEGORIAS</h2>
+ <div class="cats" id="catGrid"></div>
+ <div class="catall"><button class="btn btn-line active" id="catAll">TODOS OS JOGOS</button></div>
+</section>
+<div class="notices" aria-label="Avisos">
+ <aside class="notice n-new"><span class="nico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12a4 4 0 0 1 3.9 4.9l-.8 3.5a2.4 2.4 0 0 1-4 1.1L15 15.5H9l-2.1 2a2.4 2.4 0 0 1-4-1.1l-.8-3.500A4 4 0 0 1 6 8z"/><path d="M8 10.500v3M6.5 12h3"/><circle cx="15.5" cy="11.2" r=".6" fill="currentColor"/><circle cx="17.5" cy="12.8" r=".6" fill="currentColor"/></svg></span><div><b>AVISO</b><p>Vamos adicionar mais jogos em breve!</p></div></aside>
+ <aside class="notice n-safe"><span class="nico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v5.5c0 4.5-3.1 8-7.5 9.5-4.4-1.5-7.5-5-7.5-9.5V6L12 3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><div><b>AVISO</b><p>Todos os jogos foram testados e são disponibilizados com segurança. Qualquer dúvida, entre em contato conosco.</p></div></aside>
+</div>
+<section class="sec" id="jogos-em-oferta"><h2>🔥 JOGOS EM OFERTA</h2>
+ <p class="deals-sub">Confira alguns dos jogos que estão com preço especial no TIZIU HUB.</p>
+ <div class="deals" id="dealsCarousel">
+  <button class="deal-arrow deal-prev" type="button" aria-label="Jogo anterior">‹</button>
+  <div class="deal-viewport"><div class="deal-track"></div></div>
+  <button class="deal-arrow deal-next" type="button" aria-label="Próximo jogo">›</button>
+ </div>
+</section>
+<section class="sec" id="jogos"><h2 id="gamesTitle">JOGOS</h2><div class="grid" id="gamesGrid"></div></section>
+<section class="sec" id="mais-vendidos"><h2>MAIS VENDIDOS</h2><div class="grid" id="bestGrid"></div></section>
+<section class="sec" id="contato">
+ <div class="chelp"><h2>PRECISA DE AJUDA?</h2>
+ <p>Estamos aqui para ajudar! Entre em contato com a equipe TIZIU HUB para tirar dúvidas sobre produtos, compras e outras informações da loja.</p>
+ <small>Sua experiência gamer é nossa prioridade.</small></div>
+ <div class="ccards">
+  <article class="ccard">
+   <div class="cicon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+   <h3>Fale por e-mail</h3><p>Envie sua dúvida para nossa equipe.</p><span class="cinfo" id="mailText">tiziuhub@gmail.com</span>
+   <a class="btn btn-gold" id="mailBtn" href="https://mail.google.com/mail/?view=cm&fs=1&to=tiziuhub@gmail.com" target="_blank" rel="noopener">ENVIAR E-MAIL</a>
+  </article>
+  <article class="ccard">
+   <div class="cicon wa"><svg viewBox="0 0 24 24"><path d="M3 21l1.6-4.6A8.5 8.5 0 1 1 8 19.6L3 21z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.5-2-1-1 .8c-1-.4-2-1.4-2.4-2.4l.8-1-1-2L9 8.5z"/></svg></div>
+   <h3>Atendimento pelo WhatsApp</h3><p>Fale conosco para esclarecer suas dúvidas.</p><span class="cinfo">(82) 98897-7671</span>
+   <a class="btn btn-gold" href="https://wa.me/5582988977671" target="_blank" rel="noopener">CHAMAR NO WHATSAPP</a>
+  </article>
+ </div>
+ <form id="contactForm" class="cform" novalidate>
+  <h3>ENVIE SUA DÚVIDA</h3>
+  <div class="frow">
+   <label>Seu nome<input name="nome" type="text" required minlength="2" autocomplete="name" placeholder="Como podemos te chamar?"></label>
+   <label>Seu e-mail<input name="email" type="email" required autocomplete="email" placeholder="voce@exemplo.com"></label>
+  </div>
+  <label>Assunto<input name="assunto" type="text" required minlength="3" placeholder="Sobre o que é sua dúvida?"></label>
+  <label>Digite sua mensagem<textarea name="mensagem" rows="5" required minlength="10" placeholder="Escreva sua mensagem aqui..."></textarea></label>
+  <button class="btn btn-gold" type="submit">ENVIAR MENSAGEM</button>
+  <p id="formMsg" role="status"></p>
+  <p class="fnote">Uma nova aba do Gmail será aberta para você concluir o envio. Depois de clicar em Enviar no Gmail, você poderá voltar à loja.</p>
+ </form>
+</section>
+<section class="sec" id="avaliacoes">
+ <div class="chelp"><h2>AVALIE O TIZIU HUB</h2><p>Sua opinião nos ajuda a melhorar nossa plataforma.</p></div>
+ <form id="reviewForm" class="cform" novalidate>
+  <label>Nome ou apelido<input name="rname" type="text" required minlength="2" maxlength="40" autocomplete="nickname" placeholder="Como quer aparecer?"></label>
+  <div class="rlabel">Sua nota
+   <div class="rstarsin" role="radiogroup" aria-label="Nota de 1 a 5 estrelas">
+    <input type="radio" name="rating" id="st5" value="5"><label for="st5" title="5 estrelas">★</label>
+    <input type="radio" name="rating" id="st4" value="4"><label for="st4" title="4 estrelas">★</label>
+    <input type="radio" name="rating" id="st3" value="3"><label for="st3" title="3 estrelas">★</label>
+    <input type="radio" name="rating" id="st2" value="2"><label for="st2" title="2 estrelas">★</label>
+    <input type="radio" name="rating" id="st1" value="1"><label for="st1" title="1 estrela">★</label>
+   </div></div>
+  <label>Comentário<textarea id="rcomment" name="rcomment" rows="4" required minlength="10" maxlength="500" placeholder="Conte como foi sua experiência com a plataforma..."></textarea><small id="rcount" class="fnote">0/500</small></label>
+  <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+  <button class="btn btn-gold" type="submit">ENVIAR AVALIAÇÃO</button>
+  <p id="reviewMsg" role="status"></p>
+  <p class="fnote">As avaliações são publicadas depois de aprovadas pela equipe. Seu e-mail não é solicitado e só o nome ou apelido e o comentário aparecem no site.</p>
+ </form>
+ <h3 class="rhead">O QUE ESTÃO DIZENDO SOBRE O TIZIU HUB</h3>
+ <p id="reviewSummary" class="rsum"></p>
+ <div id="reviewList" class="rlist"></div>
+</section>
+</main>
+<footer>
+ <div class="fgrid">
+  <div><h4>TIZIU HUB</h4><p>Seu hub de jogos para PC.</p></div>
+  <div class="flinks"><a href="#inicio">Início</a><a href="#jogos">Jogos</a><a href="#jogos-em-oferta">Ofertas</a><a href="#mais-vendidos">Mais vendidos</a><a href="#contato">Contato</a><a href="#">Termos de uso</a><a href="#">Política de privacidade</a></div>
+ </div>
+ <p class="copy">© 2026 TIZIU HUB — Todos os direitos reservados.</p>
+</footer>
+<div id="overlay"></div>
+<aside id="cart"><div class="chead"><span>CARRINHO</span><button id="closeCart" class="ibtn" aria-label="Fechar">✕</button></div>
+ <div id="cartItems"></div>
+ <div class="cfoot"><div class="row"><span>Subtotal</span><span id="subtotal"></span></div><div class="row t"><span>Total</span><b id="total"></b></div><small id="cartNote" class="fnote"></small><div id="checkoutLinks"></div></div>
+</aside>
+<div id="mback" hidden></div>
+<div class="modal" id="authModal" role="dialog" aria-modal="true" hidden>
+ <button class="mclose" data-close aria-label="Fechar">✕</button>
+ <img class="mlogo" src="assets/logo.png" alt="">
+ <section id="vLogin">
+  <h2>ENTRAR NO TIZIU HUB</h2>
+  <form id="loginForm" novalidate>
+   <label>E-mail<input name="email" type="email" autocomplete="email" required placeholder="voce@exemplo.com"></label>
+   <label>Senha<input name="password" type="password" autocomplete="current-password" required placeholder="Sua senha"></label>
+   <p class="amsg" id="loginMsg" role="alert"></p>
+   <button class="btn btn-gold" type="submit">ENTRAR</button>
+  </form>
+  <p class="alink"><a href="#" data-go="vForgot">Esqueceu sua senha?</a></p>
+  <p class="alink">Ainda não tem uma conta? <a href="#" data-go="vRegister">Criar conta</a></p>
+ </section>
+ <section id="vRegister" hidden>
+  <h2>CRIAR SUA CONTA</h2>
+  <form id="registerForm" novalidate>
+   <label>Nome de usuário<input name="username" type="text" autocomplete="username" required maxlength="30" placeholder="Seu apelido"></label>
+   <label>E-mail<input name="email" type="email" autocomplete="email" required placeholder="voce@exemplo.com"></label>
+   <label>Senha<input name="password" type="password" autocomplete="new-password" required minlength="8" placeholder="Mínimo de 8 caracteres"></label>
+   <label>Confirmar senha<input name="confirm" type="password" autocomplete="new-password" required placeholder="Repita a senha"></label>
+   <p class="amsg" id="registerMsg" role="alert"></p>
+   <button class="btn btn-gold" type="submit">CRIAR CONTA</button>
+  </form>
+  <p class="alink">Já tem uma conta? <a href="#" data-go="vLogin">Entrar</a></p>
+ </section>
+ <section id="vForgot" hidden>
+  <h2>RECUPERAR SENHA</h2>
+  <p class="ainfo">A recuperação automática de senha ainda não está disponível. Para recuperar o acesso, fale com a nossa equipe pelo WhatsApp ou por e-mail, na seção de contato.</p>
+  <a class="btn btn-gold" href="#contato" data-close>IR PARA CONTATO</a>
+  <p class="alink"><a href="#" data-go="vLogin">Voltar para o login</a></p>
+ </section>
+</div>
+<div class="modal wide" id="accModal" role="dialog" aria-modal="true" hidden>
+ <button class="mclose" data-close aria-label="Fechar">✕</button>
+ <h2>MINHA CONTA</h2>
+ <div class="tabs" role="tablist"><button data-tab="conta">Resumo</button><button data-tab="pedidos">Meus pedidos</button><button data-tab="jogos">Meus jogos</button><button data-tab="favoritos">Favoritos</button><button data-tab="avaliacoes">Avaliações</button></div>
+ <div id="accBody"></div>
+ <button class="btn btn-line" id="logoutBtn">SAIR DA CONTA</button>
+</div>
+<div id="toast"></div>
+<script src="js/products.js"></script><script src="js/app.js"></script><script src="js/contact.js"></script><script src="js/reviews.js"></script><script src="js/account.js"></script><script src="js/ofertas.js"></script>
+</body></html>
