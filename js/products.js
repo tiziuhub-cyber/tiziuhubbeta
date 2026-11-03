@@ -148,5 +148,17 @@ window.PRODUCTS = [
     checkoutUrl: "https://pay.cakto.com.br/kj4fxoj_1255528",
     available: true,
     bestSeller: false
+  },
+  {
+    id: 12,
+    name: "Resident Evil 5",
+    image: "assets/resident-evil-5.jpg",
+    description: "Jogo de terror para PC.",
+    price: 17.50,
+    discount: 0,
+    category: "Terror",
+    checkoutUrl: "https://pay.cakto.com.br/5bya8v9_1277229",
+    available: true,
+    bestSeller: false
   }
 ];

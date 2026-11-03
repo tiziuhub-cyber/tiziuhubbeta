@@ -27,12 +27,17 @@
     var v = (typeof p.price === 'number' && p.price > 0) ? (p.discount > 0 ? p.price * (1 - p.discount / 100) : p.price) : 0;
     return v ? v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : 'Preço a definir';
   }
+  function priceHTML(p) {
+    var off = typeof p.price === 'number' && p.price > 0 && p.discount > 0;
+    var brl = function (n) { return n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); };
+    return (off ? '<s>' + brl(p.price) + '</s>' : '') + price(p) + (off ? ' <em>-' + p.discount + '%</em>' : '');
+  }
   function cardHTML(p, clone) {
     var ok = p.available !== false;
     return '<article class="deal-card"' + (clone ? ' aria-hidden="true"' : '') + '>' +
       '<div class="deal-cover"><img src="' + esc(p.image) + '" alt="' + (clone ? '' : esc(p.name)) + '" draggable="false">' +
       '<span class="deal-seal">OFERTA</span></div>' +
-      '<div class="deal-body"><h3>' + esc(p.name) + '</h3><div class="deal-price">' + price(p) + '</div>' +
+      '<div class="deal-body"><h3>' + esc(p.name) + '</h3><div class="deal-price">' + priceHTML(p) + '</div>' +
       '<a class="btn btn-gold deal-buy' + (ok ? '' : ' off') + '" href="' + esc(p.checkoutUrl) + '" target="_blank" rel="noopener" draggable="false"' +
       (clone ? ' tabindex="-1"' : '') + '>' + (ok ? 'COMPRAR' : 'INDISPONÍVEL') + '</a></div></article>';
   }

@@ -1,4 +1,5 @@
 const $=s=>document.querySelector(s);
+const norm=s=>String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
 const brl=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 const hasPrice=p=>typeof p.price==='number'&&p.price>0;
 const finalPrice=p=>!hasPrice(p)?0:(p.discount>0?p.price*(1-p.discount/100):p.price);
@@ -6,10 +7,10 @@ let cart=[];try{cart=JSON.parse(localStorage.getItem('tiziu_cart'))||[]}catch(e)
 const save=()=>{try{localStorage.setItem('tiziu_cart',JSON.stringify(cart))}catch(e){}};
 function cardHTML(p){
   const off=hasPrice(p)&&p.discount>0;
-  return `<article class="card">${off?`<span class="badge">-${p.discount}%</span>`:''}
+  return `<article class="card">${off?`<span class="badge">OFERTA -${p.discount}%</span>`:''}${p.bestSeller?`<span class="badge b-best${off?' b2':''}">🔥 MAIS VENDIDO</span>`:''}
   <img src="${p.image}" alt="${p.name}" loading="lazy">
   <button class="fav${window.isFav&&isFav(p.id)?' on':''}" data-fav="${p.id}" aria-label="Favoritar ${p.name}" title="Favoritar">♥</button>
-  <div class="cbody"><h3>${p.name}</h3><p>${p.description}</p>
+  <div class="cbody">${p.category?`<span class="ctag">${p.category}</span>`:''}<h3>${p.name}</h3><p>${p.description}</p>
   <div>${off?`<span class="old">${brl(p.price)}</span>`:''}<span class="price">${hasPrice(p)?brl(finalPrice(p)):'Preço a definir'}</span></div>
   <div class="cbtns">
   <a class="btn btn-gold ${p.available?'':'off'}" href="${p.checkoutUrl}" target="_blank" rel="noopener">${p.available?'COMPRAR AGORA':'INDISPONÍVEL'}</a>
@@ -30,13 +31,13 @@ function selectCat(name){
 $('#catGrid').addEventListener('click',e=>{const b=e.target.closest('.cat');if(b)selectCat(b.dataset.cat)});
 $('#catAll').onclick=()=>selectCat(null);
 function renderAll(){
-  const q=$('#searchInput').value.trim().toLowerCase();
-  const list=PRODUCTS.filter(p=>p.name.toLowerCase().includes(q));
+  const q=norm($('#searchInput').value.trim());
+  const list=PRODUCTS.filter(p=>norm(p.name).includes(q));
   const games=activeCat?list.filter(p=>p.category===activeCat):list;
   $('#gamesTitle').textContent=activeCat?'JOGOS · '+activeCat.toUpperCase():'JOGOS';
   const catHasAny=!activeCat||PRODUCTS.some(p=>p.category===activeCat);
-  fill('#gamesGrid',games,catHasAny?'Nenhum produto encontrado.':'Em breve, novos jogos desta categoria estarão disponíveis.');
-  fill('#bestGrid',list.filter(p=>p.bestSeller),q?'Nenhum produto encontrado.':'Em breve.');
+  fill('#gamesGrid',games,catHasAny?(q?'Nenhum jogo encontrado. Tente pesquisar por outro nome.':'Nenhum produto encontrado.'):'Em breve, novos jogos desta categoria estarão disponíveis.');
+  fill('#bestGrid',list.filter(p=>p.bestSeller),q?'Nenhum jogo encontrado. Tente pesquisar por outro nome.':'Em breve.');
 }
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),1800)}
 function addToCart(id){
